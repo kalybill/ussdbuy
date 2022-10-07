@@ -10,7 +10,7 @@ use App\Http\Controllers\Controller;
 class ChecknumController extends Controller
 {
     public function index(Request $req){
-       $check = Customer::where('phone', '=', $req->phone)->first();
+       $check = Customer::where('phone', '=', $req->phone)->where('status', '=', 1)->first();
 
        if($check){
             return response()->json(['msg' => 'active', 'status' => 1, 'number' => $check->phone]);
